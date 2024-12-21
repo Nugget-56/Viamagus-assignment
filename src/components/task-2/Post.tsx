@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Post } from './PostsFeed';
-import { useParams, Link } from "react-router";
+import { useParams, useNavigate } from "react-router";
 
 export default function PostDetailed() {
   const [post, setPost] = useState<Post>()
 
+  const navigate = useNavigate();
   let { postID } = useParams();
 
   useEffect(() => {
@@ -19,10 +20,8 @@ export default function PostDetailed() {
 
   return (
     <div className="flex flex-col gap-4 h-screen w-full">
-      <button className="absolute top-4 left-4 bg-gray-900 hover:bg-gray-800 text-white py-2 px-4 rounded"> 
-        <Link to={"/posts"}>
-          Back 
-        </Link>
+      <button className="absolute top-4 left-4 bg-gray-900 hover:bg-gray-800 text-white py-2 px-4 rounded" onClick={() => navigate('/posts')}> 
+        Back 
       </button>
       <header className="h-20 flex items-center justify-center bg-[url('/cart/bg.png')] bg-cover">
         <h1 className='text-2xl font-bold p-4'>Blog {post.id}</h1>

@@ -9,7 +9,7 @@ interface CartModalProps {
 
 export function CartModal({ products, updateQuantity }: CartModalProps) {
   const [open, setOpen] = useState(false)
-  const [discount, setDiscount] = useState(0)
+  const [discount, setDiscount] = useState(10)
 
   const cartItems = products.filter(product => product.quantity > 0);
   const totalItems = cartItems.reduce((sum, product) => sum + product.quantity, 0);
@@ -18,6 +18,7 @@ export function CartModal({ products, updateQuantity }: CartModalProps) {
 
   return (
     <div>
+      {/* maybe add animation on modal opening */}
       <button
         className="flex items-center gap-2 bg-gray-900 text-white hover:bg-gray-800 px-4 py-2 rounded"
         onClick={() => setOpen(true)}
@@ -31,7 +32,6 @@ export function CartModal({ products, updateQuantity }: CartModalProps) {
           <div
             className="absolute inset-0 bg-black opacity-50"
             onClick={() => setOpen(false)}
-            aria-hidden="true"
           />
           <div className="relative bg-white w-full max-w-md rounded-md">
             <button
@@ -61,7 +61,6 @@ export function CartModal({ products, updateQuantity }: CartModalProps) {
                         <button
                           className="border border-gray-300 rounded p-2"
                           onClick={() => updateQuantity(product.id, -1)}
-                          aria-label={`Decrease quantity of ${product.name}`}
                         >
                           <Minus className="h-4 w-4" />
                         </button>
@@ -69,7 +68,6 @@ export function CartModal({ products, updateQuantity }: CartModalProps) {
                         <button
                           className="border border-gray-300 rounded p-2"
                           onClick={() => updateQuantity(product.id, 1)}
-                          aria-label={`Increase quantity of ${product.name}`}
                         >
                           <Plus className="h-4 w-4" />
                         </button>

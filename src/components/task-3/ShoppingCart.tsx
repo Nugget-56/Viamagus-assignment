@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Plus, Minus } from "lucide-react";
 import { CartModal } from "./CartModal";
 
@@ -66,7 +66,14 @@ const productList = [
 
 
 export default function Shop() {
-  const [products, setProducts] = useState<Product[]>(productList);
+  const [products, setProducts] = useState<Product[]>(() => {
+    const stored = localStorage.getItem("cartData");
+    return stored ? JSON.parse(stored) : productList;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cartData", JSON.stringify(products));
+  }, [products]);
 
   const updateQuantity = (id: number, change: number) => {
     setProducts((prev) =>
@@ -80,14 +87,14 @@ export default function Shop() {
 
   return (
     <>
-    <header className="flex justify-between items-center px-4 md:px-8 py-6 bg-[url('/cart/bg.png')] bg-cover bg-center bg-no-repeat border-b border-gray-300">
+    <header className="flex justify-between items-center px-4 md:px-8 py-6 bg-[url('/cart/bg.png')] bg-cover bg-center border-b border-gray-300">
       <h1 className="text-2xl font-bold">SHOP</h1>
       <CartModal products={products} updateQuantity={updateQuantity} />
     </header>
     <div className="px-4 md:px-8 py-8">
-      <div className="grid grid-cols-1 min-[550px]:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
-          <div key={product.id} className="overflow-hidden border border-gray-300 rounded">
+          <div key={product.id} className="overflow-hidden border border-gray-300 rounded-md">
             <div className="flex items-center justify-center text-gray-400 aspect-square">
               {product.name}
             </div>
@@ -100,24 +107,21 @@ export default function Shop() {
                 <button
                   className="w-full bg-gray-900 text-white hover:bg-gray-800 py-2 rounded"
                   onClick={() => updateQuantity(product.id, 1)}
-                  aria-label={`Add ${product.name} to cart`}
                 >
                   ADD TO CART
                 </button>
               ) : (
                 <div className="flex items-center justify-between w-full">
                   <button
-                    className="border border-gray-300 rounded p-2"
+                    className="flex justify-center items-center border w-20 border-gray-300 rounded p-2"
                     onClick={() => updateQuantity(product.id, -1)}
-                    aria-label={`Decrease quantity of ${product.name}`}
                   >
                     <Minus className="h-4 w-4" />
                   </button>
                   <span className="font-medium">{product.quantity}</span>
                   <button
-                    className="border border-gray-300 rounded p-2"
+                    className="flex justify-center items-center border w-20 border-gray-300 rounded p-2"
                     onClick={() => updateQuantity(product.id, 1)}
-                    aria-label={`Increase quantity of ${product.name}`}
                   >
                     <Plus className="h-4 w-4" />
                   </button>
