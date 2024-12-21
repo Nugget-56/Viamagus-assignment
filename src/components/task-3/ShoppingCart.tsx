@@ -80,14 +80,14 @@ export default function Shop() {
 
   return (
     <>
-    <header className="flex justify-between items-center px-4 md:px-8 py-6 bg-slate-400">
+    <header className="flex justify-between items-center px-4 md:px-8 py-6 bg-[url('/cart/bg.png')] bg-cover bg-center bg-no-repeat border-b border-gray-300">
       <h1 className="text-2xl font-bold">SHOP</h1>
       <CartModal products={products} updateQuantity={updateQuantity} />
     </header>
     <div className="px-4 md:px-8 py-8">
       <div className="grid grid-cols-1 min-[550px]:grid-cols-2 lg:grid-cols-4 gap-6">
         {products.map((product) => (
-          <div key={product.id} className="overflow-hidden border rounded">
+          <div key={product.id} className="overflow-hidden border border-gray-300 rounded">
             <div className="flex items-center justify-center text-gray-400 aspect-square">
               {product.name}
             </div>

@@ -19,7 +19,7 @@ export function CartModal({ products, updateQuantity }: CartModalProps) {
   return (
     <div>
       <button
-        className="flex items-center gap-2 bg-secondary text-white px-4 py-2 rounded"
+        className="flex items-center gap-2 bg-gray-900 text-white hover:bg-gray-800 px-4 py-2 rounded"
         onClick={() => setOpen(true)}
       >
         <ShoppingCart className="h-4 w-4" />
@@ -103,7 +103,7 @@ export function CartModal({ products, updateQuantity }: CartModalProps) {
                 <span>Total:</span>
                 <span>{formatPrice(total)}</span>
               </div>
-              <button className="w-full bg-gray-900 text-white hover:bg-gray-800 py-2 rounded">
+              <button className="w-full bg-gray-900 text-white hover:bg-gray-800 bg-cover py-2 rounded">
                 Checkout
               </button>
             </div>
