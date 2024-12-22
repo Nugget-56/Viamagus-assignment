@@ -12,7 +12,7 @@ npm run dev
 
 /login
 
-### Task 2 - Login page
+### Task 2 - Blog posts
 
 /posts
 
