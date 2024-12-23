@@ -64,9 +64,9 @@ export default function LoginPage() {
                   Email
                 </label>
                 {emailError && (
-                  <div className="flex items-center gap-1 text-red-500 text-sm tracking-tighter p-2 rounded">
+                  <div className="flex text-center items-center gap-1 text-red-500 text-sm tracking-tighter">
                     <img src="/loginpage/error.svg" alt="error" width={15}/>
-                    {emailError}
+                    <div className='mt-1'>{emailError}</div>
                   </div>
                 )}
               </div>
@@ -75,7 +75,7 @@ export default function LoginPage() {
                   type="password" 
                   name="password" 
                   id="password" 
-                  className="pl-1 mb-2 block py-2.5 px-0 w-full text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-mygreen peer" 
+                  className="pl-1 block py-2.5 px-0 w-full text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-mygreen peer" 
                   placeholder=" " 
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -87,9 +87,9 @@ export default function LoginPage() {
                   Password
                 </label>
                 {passwordError && (
-                  <div className="flex items-center gap-1 text-red-500 text-sm tracking-tighter p-2 rounded">
+                  <div className="flex items-center gap-1 text-red-500 text-sm tracking-tighter">
                     <img src="/loginpage/error.svg" alt="error" width={15}/>
-                    {passwordError}
+                    <div className='mt-1'>{passwordError}</div>
                   </div>
                 )}
               </div>
